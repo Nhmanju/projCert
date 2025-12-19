@@ -1,2 +1,6 @@
 this is line 1
-this is line 2 from master edit
+<<<<<<< HEAD
+this is line 2 from modify edit
+=======
+this is line 2 from modify
+>>>>>>> devenv
