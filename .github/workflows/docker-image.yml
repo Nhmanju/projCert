@@ -36,8 +36,8 @@ jobs:
        username: ubuntu           # your server user (default for AWS EC2)
        key: ${{ secrets.SSH_PRIVATE_KEY }}
        script: |
-        docker pull ${{secrets.DOCKER_USERNAME}}/php-app:latest
-        docker stop php-app || true
-        docker rm php-app || true
-        docker run -d -p 80:80 --name php-app ${{ secrets.DOCKER_USERNAME }}/php-app:latest
+        sudo docker pull ${{secrets.DOCKER_USERNAME}}/php-app:latest
+        sudo docker stop php-app || true
+        sudo docker rm php-app || true
+        sudo docker run -d -p 80:80 --name php-app ${{ secrets.DOCKER_USERNAME }}/php-app:latest
       
