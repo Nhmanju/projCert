@@ -28,3 +28,16 @@ jobs:
     - name: Push Docker image
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/php-app:latest
+        
+    - name: Deploy to Ubuntu server
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+       host: ${{ secrets.SERVER_IP }}
+       username: ubuntu           # your server user (default for AWS EC2)
+       key: ${{ secrets.SSH_PRIVATE_KEY }}
+       script: |
+        docker pull ${{secrets.DOCKER_USERNAME}}/php-app:latest
+        docker stop php-app || true
+        docker rm php-app || true
+        docker run -d -p 80:80 --name php-app ${{ secrets.DOCKER_USERNAME }}/php-app:latest
+      
