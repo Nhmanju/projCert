@@ -1,0 +1,20 @@
+name: static_site
+
+on:
+ push:
+  branches: 
+   - master 
+
+jobs:
+   check-files:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: checkoutrepo
+         uses: action/checkout@v4
+
+       - name: show corrent files
+         run: ls -la
+
+       - name: print completed message
+         run: echo "process completed"
